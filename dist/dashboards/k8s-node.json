@@ -5,7 +5,7 @@
       "type": "grafana",
       "id": "grafana",
       "name": "Grafana",
-      "version": "5.0.0-pre1"
+      "version": "6.2.5"
     },
     {
       "type": "panel",
@@ -42,8 +42,8 @@
   "editable": true,
   "gnetId": 470,
   "graphTooltip": 1,
-  "id": null,
-  "iteration": 1516060966755,
+  "id": 2,
+  "iteration": 1566381645988,
   "links": [
     {
       "asDropdown": true,
@@ -80,6 +80,7 @@
       },
       "id": 25,
       "links": [],
+      "options": {},
       "title": "",
       "transparent": true,
       "type": "prometheus-kubernetes-nodeinfo-panel"
@@ -90,13 +91,186 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 8
+        "y": 11
       },
       "id": 27,
       "panels": [],
       "repeat": null,
       "title": "",
       "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "decimals": 2,
+      "fill": 6,
+      "gridPos": {
+        "h": 11,
+        "w": 20,
+        "x": 0,
+        "y": 12
+      },
+      "id": 29,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "options": {},
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": true,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "node_load1{kubernetes_node=~\"$node\"}",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "{{kubernetes_node}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "System Load",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "cacheTimeout": null,
+      "colorBackground": true,
+      "colorValue": false,
+      "colors": [
+        "rgba(50, 172, 45, 0.97)",
+        "rgba(237, 129, 40, 0.89)",
+        "rgba(245, 54, 54, 0.9)"
+      ],
+      "datasource": "$datasource",
+      "editable": true,
+      "error": false,
+      "format": "none",
+      "gauge": {
+        "maxValue": 100,
+        "minValue": 0,
+        "show": false,
+        "thresholdLabels": false,
+        "thresholdMarkers": true
+      },
+      "gridPos": {
+        "h": 11,
+        "w": 4,
+        "x": 20,
+        "y": 12
+      },
+      "id": 23,
+      "interval": null,
+      "links": [],
+      "mappingType": 1,
+      "mappingTypes": [
+        {
+          "name": "value to text",
+          "value": 1
+        },
+        {
+          "name": "range to text",
+          "value": 2
+        }
+      ],
+      "maxDataPoints": 100,
+      "nullPointMode": "connected",
+      "nullText": null,
+      "options": {},
+      "postfix": "",
+      "postfixFontSize": "50%",
+      "prefix": "",
+      "prefixFontSize": "50%",
+      "rangeMaps": [
+        {
+          "from": "null",
+          "text": "N/A",
+          "to": "null"
+        }
+      ],
+      "sparkline": {
+        "fillColor": "rgba(255, 255, 255, 0)",
+        "full": false,
+        "lineColor": "rgb(255, 255, 255)",
+        "show": true
+      },
+      "tableColumn": "",
+      "targets": [
+        {
+          "expr": "avg(node_load1{kubernetes_node=~\"$node\"})",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "refId": "A",
+          "textEditor": false
+        }
+      ],
+      "thresholds": "1,2",
+      "title": "Load per Node",
+      "type": "singlestat",
+      "valueFontSize": "200%",
+      "valueMaps": [
+        {
+          "op": "=",
+          "text": "N/A",
+          "value": "null"
+        }
+      ],
+      "valueName": "avg"
     },
     {
       "alerting": {},
@@ -112,10 +286,10 @@
       "fill": 5,
       "grid": {},
       "gridPos": {
-        "h": 7,
-        "w": 10,
+        "h": 9,
+        "w": 12,
         "x": 0,
-        "y": 9
+        "y": 23
       },
       "id": 1,
       "legend": {
@@ -133,6 +307,7 @@
       "linewidth": 0,
       "links": [],
       "nullPointMode": "connected",
+      "options": {},
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -143,8 +318,9 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum((avg(irate(node_cpu{nodename=~\"$node\", mode=\"system\"}[5m])) * 100))",
+          "expr": "sum((avg(irate(node_cpu_seconds_total{kubernetes_node=~\"$node\", mode=\"system\"}[5m])) * 100))",
           "format": "time_series",
+          "hide": false,
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
@@ -152,21 +328,21 @@
           "refId": "A"
         },
         {
-          "expr": "sum((avg(irate(node_cpu{nodename=~\"$node\", mode=\"user\"}[5m])) * 100))",
+          "expr": "sum((avg(irate(node_cpu_seconds_total{kubernetes_node=~\"$node\", mode=\"user\"}[5m])) * 100))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "user",
           "refId": "B"
         },
         {
-          "expr": "sum((avg(irate(node_cpu{nodename=~\"$node\", mode=\"iowait\"}[5m])) * 100))",
+          "expr": "sum((avg(irate(node_cpu_seconds_total{kubernetes_node=~\"$node\", mode=\"iowait\"}[5m])) * 100))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "iowait",
           "refId": "C"
         },
         {
-          "expr": "sum((avg(irate(node_cpu{nodename=~\"$node\", mode=\"steal\"}[5m])) * 100))",
+          "expr": "sum((avg(irate(node_cpu_seconds_total{kubernetes_node=~\"$node\", mode=\"steal\"}[5m])) * 100))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "steal",
@@ -175,6 +351,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "CPU %",
       "tooltip": {
@@ -206,7 +383,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "alerting": {},
@@ -220,10 +401,10 @@
       "fill": 1,
       "grid": {},
       "gridPos": {
-        "h": 7,
-        "w": 10,
-        "x": 10,
-        "y": 9
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 23
       },
       "id": 10,
       "legend": {
@@ -241,6 +422,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "options": {},
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -256,7 +438,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(node_memory_MemAvailable{nodename=~\"$node\"})",
+          "expr": "sum(node_memory_MemAvailable_bytes{kubernetes_node=~\"$node\"})",
           "format": "time_series",
           "interval": "",
           "intervalFactor": 1,
@@ -264,14 +446,14 @@
           "refId": "A"
         },
         {
-          "expr": "sum(node_memory_MemFree{nodename=~\"$node\"})",
+          "expr": "sum(node_memory_MemAvailable_bytes{kubernetes_node=~\"$node\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "free",
           "refId": "B"
         },
         {
-          "expr": "sum(node_memory_Active{nodename=~\"$node\"})",
+          "expr": "sum(node_memory_MemAvailable_bytes{kubernetes_node=~\"$node\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "active",
@@ -280,6 +462,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Memory Available",
       "tooltip": {
@@ -298,7 +481,7 @@
       },
       "yaxes": [
         {
-          "format": "bytes",
+          "format": "bits",
           "logBase": 1,
           "max": null,
           "min": 0,
@@ -311,90 +494,11 @@
           "min": null,
           "show": true
         }
-      ]
-    },
-    {
-      "cacheTimeout": null,
-      "colorBackground": true,
-      "colorValue": false,
-      "colors": [
-        "rgba(50, 172, 45, 0.97)",
-        "rgba(237, 129, 40, 0.89)",
-        "rgba(245, 54, 54, 0.9)"
       ],
-      "datasource": "$datasource",
-      "editable": true,
-      "error": false,
-      "format": "none",
-      "gauge": {
-        "maxValue": 100,
-        "minValue": 0,
-        "show": false,
-        "thresholdLabels": false,
-        "thresholdMarkers": true
-      },
-      "gridPos": {
-        "h": 7,
-        "w": 4,
-        "x": 20,
-        "y": 9
-      },
-      "id": 23,
-      "interval": null,
-      "links": [],
-      "mappingType": 1,
-      "mappingTypes": [
-        {
-          "name": "value to text",
-          "value": 1
-        },
-        {
-          "name": "range to text",
-          "value": 2
-        }
-      ],
-      "maxDataPoints": 100,
-      "nullPointMode": "connected",
-      "nullText": null,
-      "postfix": "",
-      "postfixFontSize": "50%",
-      "prefix": "",
-      "prefixFontSize": "50%",
-      "rangeMaps": [
-        {
-          "from": "null",
-          "text": "N/A",
-          "to": "null"
-        }
-      ],
-      "sparkline": {
-        "fillColor": "rgba(255, 255, 255, 0)",
-        "full": false,
-        "lineColor": "rgb(255, 255, 255)",
-        "show": true
-      },
-      "tableColumn": "",
-      "targets": [
-        {
-          "expr": "avg(node_load1{nodename=~\"$node\"})",
-          "format": "time_series",
-          "intervalFactor": 1,
-          "refId": "A",
-          "textEditor": false
-        }
-      ],
-      "thresholds": "1,2",
-      "title": "Load per Node",
-      "type": "singlestat",
-      "valueFontSize": "200%",
-      "valueMaps": [
-        {
-          "op": "=",
-          "text": "N/A",
-          "value": "null"
-        }
-      ],
-      "valueName": "avg"
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "aliasColors": {},
@@ -406,10 +510,10 @@
       "error": false,
       "fill": 1,
       "gridPos": {
-        "h": 6,
+        "h": 11,
         "w": 24,
         "x": 0,
-        "y": 16
+        "y": 32
       },
       "id": 24,
       "legend": {
@@ -427,6 +531,7 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "connected",
+      "options": {},
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -437,23 +542,24 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(node_filesystem_free{nodename=~\"$node\"}) by (nodename)",
+          "expr": "sum(node_filesystem_free_bytes{kubernetes_node=~\"$node\"}) by (kubernetes_node)",
           "format": "time_series",
           "intervalFactor": 1,
-          "legendFormat": "{{ nodename }} free",
+          "legendFormat": "{{ kubernetes_node}} free",
           "refId": "B"
         },
         {
-          "expr": "(sum(node_filesystem_size{nodename=~\"$node\"}) by (nodename) - sum(node_filesystem_free) by (nodename))",
+          "expr": "(sum(node_filesystem_size_bytes{kubernetes_node=~\"$node\"}) by (kubernetes_node) - sum(node_filesystem_free_bytes) by (kubernetes_node))",
           "format": "time_series",
           "instant": false,
           "intervalFactor": 1,
-          "legendFormat": "{{ nodename }} usage",
+          "legendFormat": "{{ kubernetes_node}} usage",
           "refId": "A"
         }
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Disk Usage and Capacity",
       "tooltip": {
@@ -487,7 +593,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "alerting": {},
@@ -501,10 +611,10 @@
       "fill": 1,
       "grid": {},
       "gridPos": {
-        "h": 6,
+        "h": 8,
         "w": 12,
         "x": 0,
-        "y": 22
+        "y": 43
       },
       "id": 8,
       "legend": {
@@ -520,6 +630,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "options": {},
       "percentage": false,
       "pointradius": 1,
       "points": true,
@@ -530,14 +641,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(node_disk_bytes_read{nodename=~\"$node\"}[5m]))",
+          "expr": "sum(rate(node_disk_read_bytes_total{kubernetes_node=~\"$node\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Read",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(node_disk_bytes_written{nodename=~\"$node\"}[5m]))",
+          "expr": "sum(rate(node_disk_written_bytes_total{kubernetes_node=~\"$node\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Write",
@@ -546,6 +657,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Disk Throughput",
       "tooltip": {
@@ -577,7 +689,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "alerting": {},
@@ -591,10 +707,10 @@
       "fill": 1,
       "grid": {},
       "gridPos": {
-        "h": 6,
+        "h": 8,
         "w": 12,
         "x": 12,
-        "y": 22
+        "y": 43
       },
       "id": 7,
       "legend": {
@@ -610,6 +726,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "options": {},
       "percentage": false,
       "pointradius": 1,
       "points": true,
@@ -620,14 +737,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(node_disk_reads_completed{nodename=~\"$node\"}[5m]))",
+          "expr": "sum(rate(node_disk_reads_completed_total{kubernetes_node=~\"$node\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Reads",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(node_disk_writes_completed{nodename=~\"$node\"}[5m]))",
+          "expr": "sum(rate(node_disk_writes_completed_total{kubernetes_node=~\"$node\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "Writes",
@@ -636,6 +753,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Disk IOPS",
       "tooltip": {
@@ -667,7 +785,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "alerting": {},
@@ -681,10 +803,10 @@
       "fill": 1,
       "grid": {},
       "gridPos": {
-        "h": 5,
+        "h": 7,
         "w": 12,
         "x": 0,
-        "y": 28
+        "y": 51
       },
       "id": 9,
       "legend": {
@@ -700,6 +822,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "options": {},
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -715,14 +838,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(node_network_receive_bytes{nodename=~\"$node\"}[5m]))",
+          "expr": "sum(rate(node_network_receive_bytes_total{kubernetes_node=~\"$node\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "receive",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(node_network_transmit_bytes{nodename=~\"$node\"}[5m]))",
+          "expr": "sum(rate(node_network_transmit_bytes_total{kubernetes_node=~\"$node\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "transmit",
@@ -731,6 +854,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Network Traffic/sec",
       "tooltip": {
@@ -762,7 +886,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "alerting": {},
@@ -776,10 +904,10 @@
       "fill": 1,
       "grid": {},
       "gridPos": {
-        "h": 5,
+        "h": 7,
         "w": 12,
         "x": 12,
-        "y": 28
+        "y": 51
       },
       "id": 18,
       "legend": {
@@ -795,6 +923,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "options": {},
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -810,14 +939,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(node_network_receive_errs{nodename=~\"$node\"})",
+          "expr": "sum(node_network_receive_errs_total{kubernetes_node=~\"$node\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "in",
           "refId": "A"
         },
         {
-          "expr": "sum(node_network_transmit_errs{nodename=~\"$node\"})",
+          "expr": "sum(node_network_transmit_errs_total{kubernetes_node=~\"$node\"})",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "in",
@@ -826,6 +955,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Network Errors/sec",
       "tooltip": {
@@ -857,7 +987,11 @@
           "min": null,
           "show": true
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "alerting": {},
@@ -871,10 +1005,10 @@
       "fill": 1,
       "grid": {},
       "gridPos": {
-        "h": 5,
+        "h": 11,
         "w": 24,
         "x": 0,
-        "y": 33
+        "y": 58
       },
       "id": 17,
       "legend": {
@@ -890,6 +1024,7 @@
       "linewidth": 2,
       "links": [],
       "nullPointMode": "connected",
+      "options": {},
       "percentage": false,
       "pointradius": 5,
       "points": false,
@@ -905,14 +1040,14 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(rate(node_network_receive_packets{nodename=~\"$node\"}[5m]))",
+          "expr": "sum(rate(node_network_receive_packets_total{kubernetes_node=~\"$node\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "receive",
           "refId": "A"
         },
         {
-          "expr": "sum(rate(node_network_transmit_packets{nodename=~\"$node\"}[5m]))",
+          "expr": "sum(rate(node_network_transmit_packets_total{kubernetes_node=~\"$node\"}[5m]))",
           "format": "time_series",
           "intervalFactor": 1,
           "legendFormat": "transmit",
@@ -921,6 +1056,7 @@
       ],
       "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
       "title": "Network Packets/sec",
       "tooltip": {
@@ -952,11 +1088,15 @@
           "min": null,
           "show": false
         }
-      ]
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     }
   ],
   "refresh": false,
-  "schemaVersion": 16,
+  "schemaVersion": 18,
   "style": "dark",
   "tags": [
     "kubernetes",
@@ -965,18 +1105,30 @@
   "templating": {
     "list": [
       {
+        "current": {
+          "text": "cnlab.k8s.dapp.com",
+          "value": "cnlab.k8s.dapp.com"
+        },
         "hide": 0,
+        "includeAll": false,
         "label": null,
+        "multi": false,
         "name": "cluster",
         "options": [],
         "query": "grafana-kubernetes-datasource",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "type": "datasource"
       },
       {
         "allValue": null,
+        "current": {
+          "text": "Prometheus",
+          "value": "Prometheus"
+        },
         "datasource": "$cluster",
+        "definition": "",
         "hide": 2,
         "includeAll": false,
         "label": "",
@@ -986,6 +1138,7 @@
         "query": "datasource",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": "",
         "tags": [],
@@ -994,18 +1147,30 @@
         "useTags": false
       },
       {
+        "current": {
+          "text": "Prometheus",
+          "value": "Prometheus"
+        },
         "hide": 2,
+        "includeAll": false,
         "label": "",
+        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "prometheus",
         "refresh": 1,
         "regex": "/$ds/",
+        "skipUrlSync": false,
         "type": "datasource"
       },
       {
         "allValue": null,
+        "current": {
+          "text": "All",
+          "value": "$__all"
+        },
         "datasource": "$cluster",
+        "definition": "",
         "hide": 2,
         "includeAll": true,
         "label": null,
@@ -1015,6 +1180,7 @@
         "query": "node",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 0,
         "tagValuesQuery": null,
         "tags": [],
@@ -1025,7 +1191,7 @@
     ]
   },
   "time": {
-    "from": "now-30m",
+    "from": "now-3h",
     "to": "now"
   },
   "timepicker": {
@@ -1055,5 +1221,7 @@
     ]
   },
   "timezone": "browser",
-  "title": "K8s Node"
+  "title": "K8s Node",
+  "uid": "Vofs2rOZz",
+  "version": 5
 }
